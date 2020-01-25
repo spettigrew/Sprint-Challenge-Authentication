@@ -1,40 +1,39 @@
 
-const db = require("../data/db-config")
+const db = require("../database/dbConfig")
 
 function list() {
     return db("users")
 }
+
+function findById(id) {
+    return db("users")
+        .where({ id })
+        .first()
+}
+
+async function insert(user) {
+    const [id] = await db("users").insert(user)
+    return findById(id)
+}
+
+async function update(id, changes) {
+    await db("users")
+        .where({ id })
+        .update(changes)
+
+    return findById(id)
+}
+
+// function remove(id) {
+//     return db("users")
+//         .where({ id })
+//         .del()
+// }
 
 module.exports = {
     list,
     findById,
     insert,
     update,
-    remove,
+    // remove,
 }
-
-// function find() {
-//     return db("users")
-//         .select("id", "username")
-// }
-
-// function findBy(filter) {
-//     return db("users")
-//         .where(filter)
-//         .select("id", "username", "password", "department")
-// }
-
-// async function add(user) {
-//     user.password = await bcrypt.hash(user.password, 12)
-
-//     const [id] = await db("users")
-//         .insert(user)
-
-//     return findById(id)
-// }
-
-// function findById(id) {
-//     return db("users")
-//         .where({ id })
-//         .first("id", "username")
-// }
