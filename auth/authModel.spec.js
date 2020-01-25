@@ -15,7 +15,7 @@ describe("auth model", () => {
 describe("auth model", () => {
     test("findById", async () => {
         const res = await authModel.findById(1)
-        expect(res.username).toBe("varchar")
+        expect(res.username).toBe("spetti")
     })
 
     test("insert", async () => {
@@ -25,9 +25,9 @@ describe("auth model", () => {
 })
 
     test("update", async () => {
-        await authModel.update(1, { username: "spetti" })
+        await authModel.update(1, { username: "spetti1" })
         const users = await authModel.findById(1)
-        expect(users.username).toBe("spetti")
+        expect(users.username).toBe("spetti1")
     })
 
     test("remove", async () => {
