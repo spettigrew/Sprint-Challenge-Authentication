@@ -15,23 +15,23 @@ test("welcome route", async () => {
     expect(res.status).toBe(201)
     expect(res.type).toBe("application/json")
     expect(res.body.message).toBe("Welcome to this API.")
-})
+ })
 
 test("get user list", async () => {
     const res = await supertest(server).get("/api/users")
-    expect(res.status).toBe(201)
+    expect(res.status).toBe(200)
     expect(res.type).toBe("application/json")
     expect(res.body.length).toBeGreaterThan(0)
     expect(res.body[0].id).toBe(1)
-    expect(res.body[0].username).toBe("varchar")
+    expect(res.body[0].username).toBe("spetti")
 })
 
 test("create user route", async () => {
     const res = await supertest(server)
         .post("/api/users")
-        .send({ username: "spetti" })
+        .send({ username: "spetti1" })
 
     expect(res.status).toBe(201)
     expect(res.type).toBe("application/json")
-    expect(res.body).toEqual({ id: 2, username: "spetti" })
+    expect(res.body).toEqual({ id: 2, username: "spetti1" })
 })

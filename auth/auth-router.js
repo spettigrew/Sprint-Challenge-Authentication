@@ -5,10 +5,12 @@ const signToken = require("../auth/auth-token")
 
 const router = require('express').Router();
 
+
 router.post("/register", async (req, res, next) => {
   try {
-    const savedUser = await AuthModel.add(req.body)
-    return res.status(201).json(savedUser)
+    const createUser = await AuthModel.add(req.body)
+    return res.status(201).json(createUser)
+    
   } catch (err) {
     next(err)
   }
