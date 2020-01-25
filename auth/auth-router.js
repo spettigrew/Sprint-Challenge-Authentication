@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs")
 const AuthModel = require("../auth/auth-model")
 const authenticate = require("../middleware/authenticate-middleware")
-const signToken = require("../users/user-token")
+const signToken = require("../auth/auth-token")
 
 const router = require('express').Router();
 
@@ -39,7 +39,7 @@ router.post("/login", async (req, res, next) => {
   }
 })
 
-router.get("/protected", authenticate-middleware, async (req, res, next) => {
+router.get("/protected", authenticate, async (req, res, next) => {
   try {
     return res.status(200).json({ message: "You are authorized", })
 
