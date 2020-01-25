@@ -24,16 +24,16 @@ async function update(id, changes) {
     return findById(id)
 }
 
-// function remove(id) {
-//     return db("users")
-//         .where({ id })
-//         .del()
-// }
+function remove(id) {
+    return db("users")
+        .where({ id })
+        .del()
+}
 
 module.exports = {
     list,
     findById,
     insert,
     update,
-    // remove,
+    remove,
 }
