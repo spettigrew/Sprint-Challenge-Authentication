@@ -5,35 +5,35 @@ beforeEach(async () => {
     await db.seed.run()
 })
 
-describe("auth model", () => {
+describe("auth model list", () => {
     test ("list", async () => {
         const res = await authModel.list()
         expect(res).toBeGreaterThan[1]
     })
 })
 
-describe("auth model", () => {
+describe("find user in auth model", () => {
     test("findById", async () => {
         const res = await authModel.findById(1)
         expect(res.username).toBe("spetti")
     })
 
-    test("insert", async () => {
+    test("insert new user", async () => {
         await authModel.insert({ username: "harry" })
-        const users = await db("users").select()
-        expect(users).toHaveLength(2)
+        const user = await db("users").select()
+        expect(user).toHaveLength(2)
 })
 
-    test("update", async () => {
+    test("update user", async () => {
         await authModel.update(1, { username: "spetti1" })
-        const users = await authModel.findById(1)
-        expect(users.username).toBe("spetti1")
+        const user = await authModel.findById(3)
+        expect(user.username).toBe("spetti1")
     })
 
-    test("remove", async () => {
+    test("remove user", async () => {
         await authModel.remove(1)
-        const users = await authModel.list()
-        expect(users).toHaveLength(0)
-        console.log(users)
+        const user = await authModel.list()
+        expect(user).toHaveLength(2)
+        // console.log(user)
     })
 })
