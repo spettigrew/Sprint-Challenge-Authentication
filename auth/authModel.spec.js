@@ -19,15 +19,15 @@ describe("find user in auth model", () => {
     })
 
     test("insert new user", async () => {
-        await authModel.insert({ username: "harry" })
+        await authModel.insert({ username: "harry2", password: "abc123" })
         const user = await db("users").select()
-        expect(user).toHaveLength(2)
+        expect(user).toHaveLength(4)
 })
-
+    // needs to be an entirely new user.
     test("update user", async () => {
-        await authModel.update(1, { username: "spetti1" })
-        const user = await authModel.findById(3)
-        expect(user.username).toBe("spetti1")
+        await authModel.update(1, { username: "spetti4" })
+        const user = await authModel.findById(1)
+        expect(user.username).toBe("spetti4")
     })
 
     test("remove user", async () => {
