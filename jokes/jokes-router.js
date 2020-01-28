@@ -31,5 +31,4 @@ function authorizeUser(role) {
   }
 }
 
-
 module.exports = router;
