@@ -8,7 +8,7 @@ const router = require('express').Router();
 
 router.post("/register", async (req, res, next) => {
   try {
-    const createUser = await AuthModel.add(req.body)
+    const createUser = await AuthModel.insert(req.body)
     return res.status(201).json(createUser)
     
   } catch (err) {
