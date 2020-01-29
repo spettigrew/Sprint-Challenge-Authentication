@@ -28,8 +28,8 @@ test("welcome route", async () => {
 
 test("create user route", async () => {
     const res = await supertest(server)
-        .post("/api/users")
-        .insert({ username: "power" })
+        .post("/auth")
+        .send({ username: "power" })
 
     expect(res.status).toBe(201)
     expect(res.type).toBe("application/json")
@@ -38,11 +38,11 @@ test("create user route", async () => {
 
 test("check login status", async () => {
     const res = await supertest(server)
-        .post("/api/users")
+        .post("/auth")
         .send({ username: "spetti" })
     
         expect(res.status).toBe(200)
         expect(res.type).toBe("application/json")
-        expect(res.body).toBe(username, password)
+        expect(res.body).toBe(id, username, password)
 
 })
