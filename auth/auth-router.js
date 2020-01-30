@@ -23,7 +23,7 @@ router.post("/login", async (req, res, next) => {
     const user = await AuthModel.findBy({ username })
       .first()
 
-    if (user && bcrypt.compare(password, user.password)) {
+    if (user && bcrypt.compareSync(password, user.password)) {
       const token = signToken(user)
 
       return res.status(200).json({
