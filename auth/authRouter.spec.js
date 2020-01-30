@@ -28,21 +28,21 @@ test("welcome route", async () => {
 
 test("create user route", async () => {
     const res = await supertest(server)
-        .post("/auth")
-        .send({ username: "power" })
+        .post("/api/auth/register")
+        .send({ username: "lambda", password: "abc123" })
 
     expect(res.status).toBe(201)
     expect(res.type).toBe("application/json")
-    expect(res.body).toEqual({ id: 4, username: "power" })
+    expect(res.body.username).toBe("lambda")
 })
 
 test("check login status", async () => {
     const res = await supertest(server)
-        .post("/auth")
+        .post("/api/auth/login")
         .send({ username: "spetti" })
     
-        expect(res.status).toBe(200)
-        expect(res.type).toBe("application/json")
-        expect(res.body).toBe(id, username, password)
+    expect(res.status).toBe(200)
+    expect(res.type).toBe("application/json")
+    expect(res.body).toBe({id: 1})
 
 })
