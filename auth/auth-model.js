@@ -17,7 +17,9 @@ function findById(id) {
 }
 
 async function insert(user) {
-    const [id] = await db("users").insert(user).returning("id") //for postgres when destructing [id] only
+    const [id] = await db("users")
+    .insert(user)
+    .returning("id") //for postgres when destructing [id] only
     return findById(id)
 }
 
