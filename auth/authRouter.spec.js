@@ -39,10 +39,10 @@ test("create user route", async () => {
 test("check login status", async () => {
     const res = await supertest(server)
         .post("/api/auth/login")
-        .send({ username: "spetti" })
+        .send({ username: "lambda" })
     
     expect(res.status).toBe(200)
     expect(res.type).toBe("application/json")
-    expect(res.body).toBe({id: 1})
+    expect(res.body.username).toBe(username, "lambda")
 
 })
